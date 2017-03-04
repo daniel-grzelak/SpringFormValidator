@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient form</title>
+</head>
+<body>
+<form th:action="@{/}" th:object="${patient}" method="post" enctype="multipart/form-data">
+    <table>
+        <tbody>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Surname</td>
+            <td><input type="text" th:field="*{surname}"/></td>
+        </tr>
+        <tr>
+            <td>Birth date</td>
+            <td><input type="date" th:field="*{date}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Sex</h4>
+                <ul>
+                    <li th:each="s : ${sexList}">
+                        <input type="radio" th:field="*{sex}" th:value="${s}"/>
+                        <label th:text="${s}"></label>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Pesel</td>
+            <td><input type="text" th:field="*{pesel}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <label>Picture File: </label>
+            </td>
+            <td>
+                <input type="file" th:field="*{multipartFile}" />
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="SEND"/></td>
+            <td><input type="reset" value="RESET"/></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+</body>
+</html>
